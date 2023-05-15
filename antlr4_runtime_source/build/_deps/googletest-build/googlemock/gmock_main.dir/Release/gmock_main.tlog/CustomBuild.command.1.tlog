@@ -1,0 +1,10 @@
+^C:\DEV\LABS_AADS\ANTLR4_LAB\ANTLR4_RUNTIME_SOURCE\BUILD\_DEPS\GOOGLETEST-SRC\GOOGLEMOCK\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/dev/Labs_AADS/antlr4_LAB/antlr4_runtime_source -BC:/dev/Labs_AADS/antlr4_LAB/antlr4_runtime_source/build --check-stamp-file C:/dev/Labs_AADS/antlr4_LAB/antlr4_runtime_source/build/_deps/googletest-build/googlemock/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
