@@ -1,6 +1,12 @@
 grammar mygrammar;
 
-INT: [0-9]+;
+DOUBLE: [0-9]+ '.' [0-9]+
+	| [0-9]+
+;
+
+NAME: [A-z]+;
+EQ: '=';
+PRINT: '<<';
 
 SUB: '-';
 ADD: '+';
@@ -17,10 +23,12 @@ WS: [ \t\r\n]->skip;
 expr: expr (MUL|DIV) expr # exprMULexpr
 	| expr (ADD|SUB) expr # exprADDexpr
 	| LBR expr RBR # LexprR
-	| INT # INTEGER
+	| DOUBLE # NUMBER
+	| NAME # NAMEING
 ;
-row: expr SEP # expr_sep
+row: NAME EQ expr SEP# name_eq_expr_sep
+	| PRINT expr SEP #print_expr_sep
 ;
 prog: row EOF? # oneLineProg
-	| prog row EOF? # prog_row
+	| row prog EOF? # prog_row
 ;
