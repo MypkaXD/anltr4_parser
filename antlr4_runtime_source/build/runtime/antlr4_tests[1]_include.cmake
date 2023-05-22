@@ -1,5 +1,0 @@
-if(EXISTS "C:/dev/Labs_AADS/antlr4_LAB/antlr4_runtime_source/build/runtime/antlr4_tests[1]_tests.cmake")
-  include("C:/dev/Labs_AADS/antlr4_LAB/antlr4_runtime_source/build/runtime/antlr4_tests[1]_tests.cmake")
-else()
-  add_test(antlr4_tests_NOT_BUILT antlr4_tests_NOT_BUILT)
-endif()
