@@ -1,5 +1,5 @@
 
-// Generated from mygrammar.g4 by ANTLR 4.12.0
+// Generated from mygrammar.g4 by ANTLR 4.13.0
 
 #pragma once
 
@@ -15,7 +15,15 @@
 class  mygrammarBaseVisitor : public mygrammarVisitor {
 public:
 
+  virtual std::any visitNUMBER(mygrammarParser::NUMBERContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitLexprR(mygrammarParser::LexprRContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitNAMEING(mygrammarParser::NAMEINGContext *ctx) override {
     return visitChildren(ctx);
   }
 
@@ -27,19 +35,19 @@ public:
     return visitChildren(ctx);
   }
 
-  virtual std::any visitINTEGER(mygrammarParser::INTEGERContext *ctx) override {
+  virtual std::any visitName_eq_expr_sep(mygrammarParser::Name_eq_expr_sepContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual std::any visitExpr_sep(mygrammarParser::Expr_sepContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitProg_row(mygrammarParser::Prog_rowContext *ctx) override {
+  virtual std::any visitPrint_expr_sep(mygrammarParser::Print_expr_sepContext *ctx) override {
     return visitChildren(ctx);
   }
 
   virtual std::any visitOneLineProg(mygrammarParser::OneLineProgContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitProg_row(mygrammarParser::Prog_rowContext *ctx) override {
     return visitChildren(ctx);
   }
 

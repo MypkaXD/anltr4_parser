@@ -1,5 +1,5 @@
 
-// Generated from mygrammar.g4 by ANTLR 4.12.0
+// Generated from mygrammar.g4 by ANTLR 4.13.0
 
 #pragma once
 
@@ -12,8 +12,8 @@
 class  mygrammarParser : public antlr4::Parser {
 public:
   enum {
-    INT = 1, SUB = 2, ADD = 3, DIV = 4, MUL = 5, SEP = 6, LBR = 7, RBR = 8, 
-    WS = 9
+    DOUBLE = 1, NAME = 2, EQ = 3, PRINT = 4, SUB = 5, ADD = 6, DIV = 7, 
+    MUL = 8, SEP = 9, LBR = 10, RBR = 11, WS = 12
   };
 
   enum {
@@ -54,6 +54,15 @@ public:
    
   };
 
+  class  NUMBERContext : public ExprContext {
+  public:
+    NUMBERContext(ExprContext *ctx);
+
+    antlr4::tree::TerminalNode *DOUBLE();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
   class  LexprRContext : public ExprContext {
   public:
     LexprRContext(ExprContext *ctx);
@@ -61,6 +70,15 @@ public:
     antlr4::tree::TerminalNode *LBR();
     ExprContext *expr();
     antlr4::tree::TerminalNode *RBR();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  NAMEINGContext : public ExprContext {
+  public:
+    NAMEINGContext(ExprContext *ctx);
+
+    antlr4::tree::TerminalNode *NAME();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
@@ -89,15 +107,6 @@ public:
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
   };
 
-  class  INTEGERContext : public ExprContext {
-  public:
-    INTEGERContext(ExprContext *ctx);
-
-    antlr4::tree::TerminalNode *INT();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
   ExprContext* expr();
   ExprContext* expr(int precedence);
   class  RowContext : public antlr4::ParserRuleContext {
@@ -113,10 +122,23 @@ public:
    
   };
 
-  class  Expr_sepContext : public RowContext {
+  class  Print_expr_sepContext : public RowContext {
   public:
-    Expr_sepContext(RowContext *ctx);
+    Print_expr_sepContext(RowContext *ctx);
 
+    antlr4::tree::TerminalNode *PRINT();
+    ExprContext *expr();
+    antlr4::tree::TerminalNode *SEP();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
+  class  Name_eq_expr_sepContext : public RowContext {
+  public:
+    Name_eq_expr_sepContext(RowContext *ctx);
+
+    antlr4::tree::TerminalNode *NAME();
+    antlr4::tree::TerminalNode *EQ();
     ExprContext *expr();
     antlr4::tree::TerminalNode *SEP();
 
@@ -142,8 +164,8 @@ public:
   public:
     Prog_rowContext(ProgContext *ctx);
 
-    ProgContext *prog();
     RowContext *row();
+    ProgContext *prog();
     antlr4::tree::TerminalNode *EOF();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -160,12 +182,11 @@ public:
   };
 
   ProgContext* prog();
-  ProgContext* prog(int precedence);
+
 
   bool sempred(antlr4::RuleContext *_localctx, size_t ruleIndex, size_t predicateIndex) override;
 
   bool exprSempred(ExprContext *_localctx, size_t predicateIndex);
-  bool progSempred(ProgContext *_localctx, size_t predicateIndex);
 
   // By default the static state used to implement the parser is lazily initialized during the first
   // call to the constructor. You can call this function if you wish to initialize the static state

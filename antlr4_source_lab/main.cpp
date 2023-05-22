@@ -8,22 +8,29 @@
 #include "MGVisitor.h"
 
 int main() {
-	std::string exp = "2+3;";
-	std::stringstream stream(exp);
-	antlr4::ANTLRInputStream input(stream);
-	mygrammarLexer lexer(&input);
-	antlr4::CommonTokenStream token(&lexer);
-	mygrammarParser parser(&token);
-	MGVisitor mgv;
+    setlocale(LC_ALL, "rus");
 
-	mgv.visit(parser.expr());
+    std::string exp = "a=5;b=2+a*a;<<b;";
+    std::stringstream stream(exp);
 
-	for (int count = 0; count < mgv.data.size(); ++count) {
-		if (mgv.data.empty()) {
-			std::cout << "EMPTY" << std::endl;
-		}
-		std::cout << mgv.data[count] << std::endl;
-	}
+    std::cout << "Создание входного потока с вашим выражением" << std::endl;
+    antlr4::ANTLRInputStream input(stream);
 
-	return 0;
+    std::cout << "Создание лексера" << std::endl;
+    mygrammarLexer lexer(&input);
+
+    std::cout << "Создание потока токенов" << std::endl;
+    antlr4::CommonTokenStream tokens(&lexer);
+
+    std::cout << "Создание парсера" << std::endl;
+    mygrammarParser parser(&tokens);
+
+    std::cout << "Создание посетителя" << std::endl;
+    MGVisitor visitor;
+
+    std::cout << "Обход дерева" << std::endl;
+    visitor.visit(parser.prog());
+    std::cout << "Обход дерева закнчен" << std::endl;
+
+    return 0;
 }
