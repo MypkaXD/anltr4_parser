@@ -15,6 +15,15 @@ int main() {
 	antlr4::CommonTokenStream token(&lexer);
 	mygrammarParser parser(&token);
 	MGVisitor mgv;
+
 	mgv.visit(parser.expr());
+
+	for (int count = 0; count < mgv.data.size(); ++count) {
+		if (mgv.data.empty()) {
+			std::cout << "EMPTY" << std::endl;
+		}
+		std::cout << mgv.data[count] << std::endl;
+	}
+
 	return 0;
 }
